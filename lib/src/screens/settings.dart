@@ -33,7 +33,8 @@ class SettingsScreen extends StatelessWidget {
             children: [
               settingsPanelHeader(),
               settingsPanelDescription(),
-              settingsPanelKeyType(),
+              settingsPanelKeyType(settingsService),
+              settingsPanelFontSelection(settingsService)
             ],
           );
         },
@@ -68,39 +69,82 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget settingsPanelKeyType() {
-    return Consumer<SettingsService>(
-      builder: (context, settingsService, child) {
-        return DropdownButtonFormField(
+  Widget settingsPanelKeyType(SettingsService settingsService) {
+    return DropdownButtonFormField(
+      value: 'Luma',
+      items: [
+        DropdownMenuItem(
+          value: 'Chroma',
+          child: defaultDropdownText('Chroma'),
+        ),
+        DropdownMenuItem(
           value: 'Luma',
-          items: [
-            DropdownMenuItem(
-              value: 'Chroma',
-              child: dropdownText('Chroma'),
-            ),
-            DropdownMenuItem(
-              value: 'Luma',
-              child: dropdownText('Luma'),
-            ),
-          ],
-          onChanged: (String value) {
-            if (value == 'Chroma') {
-              settingsService.updateKeyType(KeyType.chroma);
-            } else {
-              settingsService.updateKeyType(KeyType.luma);
-            }
-          },
-          decoration: InputDecoration(labelText: 'Key Type'),
-        );
+          child: defaultDropdownText('Luma'),
+        ),
+      ],
+      onChanged: (String value) {
+        if (value == 'Chroma') {
+          settingsService.updateKeyType(KeyType.chroma);
+        } else {
+          settingsService.updateKeyType(KeyType.luma);
+        }
+      },
+      decoration: InputDecoration(labelText: 'Key Type'),
+    );
+  }
+
+  Widget settingsPanelFontSelection(SettingsService settingsService) {
+    return DropdownButtonFormField(
+      value: 'Raleway',
+      decoration: InputDecoration(labelText: 'Font'),
+      items: [
+        fontSelectionDropdownText('Concert One'),
+        fontSelectionDropdownText('Dancing Script'),
+        fontSelectionDropdownText('Indie Flower'),
+        fontSelectionDropdownText('Lato'),
+        fontSelectionDropdownText('Lora'),
+        fontSelectionDropdownText('Modak'),
+        fontSelectionDropdownText('Monoton'),
+        fontSelectionDropdownText('Montserrat'),
+        fontSelectionDropdownText('Open Sans'),
+        fontSelectionDropdownText('Oswald'),
+        fontSelectionDropdownText('Pacifico'),
+        fontSelectionDropdownText('Permanent Marker'),
+        fontSelectionDropdownText('Press Start 2P'),
+        fontSelectionDropdownText('PT Sans'),
+        fontSelectionDropdownText('Raleway'),
+        fontSelectionDropdownText('Roboto'),
+        fontSelectionDropdownText('Source Sans Pro'),
+        fontSelectionDropdownText('Special Elite'),
+        fontSelectionDropdownText('Underdog'),
+        fontSelectionDropdownText('Work Sans'),
+      ],
+      onChanged: (fontName) {
+        settingsService.updateGoogleFontName(fontName);
       },
     );
   }
 
-  Widget dropdownText(String text) {
+  Widget defaultDropdownText(String text) {
     return Text(
       text,
       style: GoogleFonts.raleway(
         textStyle: TextStyle(fontSize: 12),
+      ),
+    );
+  }
+
+  DropdownMenuItem fontSelectionDropdownText(String fontName) {
+    return DropdownMenuItem(
+      value: fontName,
+      child: Text(
+        fontName,
+        style: GoogleFonts.getFont(
+          fontName,
+          textStyle: TextStyle(
+            fontSize: 12,
+          ),
+        ),
       ),
     );
   }
