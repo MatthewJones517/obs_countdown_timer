@@ -8,7 +8,7 @@ class PreferencesModel {
   final String googleFontName;
 
   /// The font size of the timer
-  final int timerFontSize;
+  final double timerFontSize;
 
   /// The color or the timer
   final Color timerColor;
