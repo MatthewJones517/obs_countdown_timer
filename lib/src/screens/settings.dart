@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:obs_countdown_timer/src/widgets/countdown_widget.dart';
 
 class SettingsScreen extends StatelessWidget {
   Widget build(context) {
     return Scaffold(
       backgroundColor: Colors.green,
-      body: Text('Settings'),
+      body: Stack(
+        children: [CountdownWidget()],
+      ),
     );
   }
 }
