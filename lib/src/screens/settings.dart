@@ -34,7 +34,8 @@ class SettingsScreen extends StatelessWidget {
               settingsPanelHeader(),
               settingsPanelDescription(),
               settingsPanelKeyType(settingsService),
-              settingsPanelFontSelection(settingsService)
+              settingsPanelFontSelection(settingsService),
+              fontSizeSelector(settingsService)
             ],
           );
         },
@@ -89,14 +90,24 @@ class SettingsScreen extends StatelessWidget {
           settingsService.updateKeyType(KeyType.luma);
         }
       },
-      decoration: InputDecoration(labelText: 'Key Type'),
+      decoration: InputDecoration(
+        labelText: 'Key Type',
+        labelStyle: GoogleFonts.raleway(
+          textStyle: TextStyle(fontSize: 16, color: Colors.black54),
+        ),
+      ),
     );
   }
 
   Widget settingsPanelFontSelection(SettingsService settingsService) {
     return DropdownButtonFormField(
       value: 'Raleway',
-      decoration: InputDecoration(labelText: 'Font'),
+      decoration: InputDecoration(
+        labelText: 'Font',
+        labelStyle: GoogleFonts.raleway(
+          textStyle: TextStyle(fontSize: 16, color: Colors.black54),
+        ),
+      ),
       items: [
         fontSelectionDropdownText('Concert One'),
         fontSelectionDropdownText('Dancing Script'),
@@ -122,6 +133,33 @@ class SettingsScreen extends StatelessWidget {
       onChanged: (fontName) {
         settingsService.updateGoogleFontName(fontName);
       },
+    );
+  }
+
+  Widget fontSizeSelector(SettingsService settingsService) {
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Font Size',
+            style: GoogleFonts.raleway(
+              textStyle: TextStyle(fontSize: 12, color: Colors.black54),
+            ),
+          ),
+          Slider(
+            min: 10,
+            max: 900,
+            activeColor: Colors.black,
+            inactiveColor: Colors.black38,
+            value: settingsService.preferences.timerFontSize,
+            onChanged: (fontSize) {
+              settingsService.updateTimerFontSize(fontSize);
+            },
+          ),
+        ],
+      ),
     );
   }
 
