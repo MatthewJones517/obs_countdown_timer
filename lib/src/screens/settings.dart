@@ -44,7 +44,7 @@ class SettingsScreen extends StatelessWidget {
   Widget settingsPanelHeader() {
     return Text(
       'Simple OBS Timer Overlay',
-      style: GoogleFonts.concertOne(
+      style: GoogleFonts.raleway(
         textStyle: TextStyle(
           fontSize: 18,
         ),
@@ -58,7 +58,13 @@ class SettingsScreen extends StatelessWidget {
         top: 10,
       ),
       child: Text(
-          "This is a super simple timer overlay for use with OBS. Just choose your settings below. Note that you'll need to key out the background using either Luma or Chroma key."),
+        "This is a super simple timer overlay for use with OBS. Just choose your settings below. Note that you'll need to key out the background using either Luma or Chroma key.",
+        style: GoogleFonts.raleway(
+          textStyle: TextStyle(
+            fontSize: 14,
+          ),
+        ),
+      ),
     );
   }
 
@@ -93,7 +99,9 @@ class SettingsScreen extends StatelessWidget {
   Widget dropdownText(String text) {
     return Text(
       text,
-      style: TextStyle(fontSize: 12),
+      style: GoogleFonts.raleway(
+        textStyle: TextStyle(fontSize: 12),
+      ),
     );
   }
 }

@@ -26,7 +26,7 @@ class PreferencesModel {
   /// Builds with default settings
   PreferencesModel.withDefaults()
       : keyType = KeyType.luma,
-        googleFontName = 'Concert One',
+        googleFontName = 'Raleway',
         timerFontSize = 72,
         timerColor = Colors.white,
         finishedMessage = "We'll get started shortly!";
