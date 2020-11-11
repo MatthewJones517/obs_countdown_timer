@@ -44,6 +44,7 @@ class Screen extends StatelessWidget {
               settingsPanelFontSelection(settingsService),
               settingsPanelFontSizeSelector(settingsService),
               settingsPanelButtons(settingsService, context),
+              reopenPanelMessage(),
             ],
           ),
         );
@@ -240,6 +241,18 @@ class Screen extends StatelessWidget {
         onPressed: () {
           settingsService.closeSettingsPanel();
         },
+      ),
+    );
+  }
+
+  Widget reopenPanelMessage() {
+    return Container(
+      width: 395,
+      margin: EdgeInsets.only(top: 10),
+      child: Text(
+        'Double-click anywhere inside window to reopen these settings.',
+        style: TextStyle(fontSize: 10),
+        textAlign: TextAlign.center,
       ),
     );
   }
