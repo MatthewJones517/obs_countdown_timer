@@ -6,7 +6,7 @@ import 'package:obs_countdown_timer/src/widgets/countdown_widget.dart';
 import 'package:obs_countdown_timer/src/models/preferences.dart';
 import 'package:provider/provider.dart';
 
-class SettingsScreen extends StatelessWidget {
+class Screen extends StatelessWidget {
   Widget build(context) {
     return Scaffold(
       body: Stack(
