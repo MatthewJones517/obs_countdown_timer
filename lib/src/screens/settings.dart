@@ -38,7 +38,8 @@ class SettingsScreen extends StatelessWidget {
               settingsPanelKeyType(settingsService),
               settingsPanelFontSelection(settingsService),
               settingsPanelFontSizeSelector(settingsService),
-              settingsPanelFontColorSelector(settingsService, context)
+              settingsPanelFontColorSelector(settingsService, context),
+              settingsPanelSelectEndTime(settingsService, context),
             ],
           );
         },
@@ -182,6 +183,25 @@ class SettingsScreen extends StatelessWidget {
             context: context,
             child: colorPicker(settingsService, context),
           );
+        },
+      ),
+    );
+  }
+
+  Widget settingsPanelSelectEndTime(
+      SettingsService settingsService, BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      child: ElevatedButton(
+        child: Text('Select End Time'),
+        style: ElevatedButton.styleFrom(primary: Colors.black87),
+        onPressed: () async {
+          TimeOfDay selectedTime = await showTimePicker(
+            initialTime: TimeOfDay.now(),
+            context: context,
+          );
+
+          print(selectedTime);
         },
       ),
     );
