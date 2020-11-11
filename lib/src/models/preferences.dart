@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Preferences {
+class PreferencesModel {
   /// Either 'chroma' or 'luma'. Chroma will give the screen a green background.
   /// Luma will give it a black background
   final String maskingKeyStyle;
@@ -23,7 +23,7 @@ class Preferences {
   final String finishedMessage;
 
   /// Builds with default settings
-  Preferences()
+  PreferencesModel()
       : maskingKeyStyle = 'luma',
         googleFontName = 'ConcertOne',
         timerFontSize = 72,
