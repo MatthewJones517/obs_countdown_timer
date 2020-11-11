@@ -13,12 +13,6 @@ class PreferencesModel {
   /// The color or the timer
   final Color timerColor;
 
-  /// Font Stroke Size
-  final double timerStrokeSize;
-
-  /// Font Stroke Color
-  final Color timerStrokeColor;
-
   final String finishedMessage;
 
   /// Builds with passed in settings
@@ -27,18 +21,14 @@ class PreferencesModel {
       this.googleFontName,
       this.timerFontSize,
       this.timerColor,
-      this.timerStrokeSize,
-      this.timerStrokeColor,
       this.finishedMessage});
 
   /// Builds with default settings
   PreferencesModel.withDefaults()
-      : keyType = KeyType.luma,
+      : keyType = KeyType.chroma,
         googleFontName = 'Concert One',
         timerFontSize = 72,
         timerColor = Colors.white,
-        timerStrokeSize = 5,
-        timerStrokeColor = Colors.black,
         finishedMessage = "We'll get started shortly!";
 }
 

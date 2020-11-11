@@ -29,16 +29,6 @@ class SettingsService extends ChangeNotifier {
     _updatePreferencesModel(timerColor: timerColor);
   }
 
-  /// Updates timer stroke size
-  void updateTimerStrokeSize(double timerStrokeSize) {
-    _updatePreferencesModel(timerStrokeSize: timerStrokeSize);
-  }
-
-  /// Updates timer stroke color
-  void updateTimerStrokColor(Color timerStrokeColor) {
-    _updatePreferencesModel(timerStrokeColor: timerStrokeColor);
-  }
-
   /// Updates message to display upon timer completion
   void updateFinishedMessage(String finishedMessage) {
     _updatePreferencesModel(finishedMessage: finishedMessage);
@@ -50,8 +40,6 @@ class SettingsService extends ChangeNotifier {
     String googleFontName,
     double timerFontSize,
     Color timerColor,
-    double timerStrokeSize,
-    Color timerStrokeColor,
     String finishedMessage,
   }) {
     _preferencesModel = PreferencesModel(
@@ -59,9 +47,6 @@ class SettingsService extends ChangeNotifier {
         googleFontName: googleFontName ?? _preferencesModel.googleFontName,
         timerFontSize: timerFontSize ?? _preferencesModel.timerFontSize,
         timerColor: timerColor ?? _preferencesModel.timerColor,
-        timerStrokeSize: timerStrokeSize ?? _preferencesModel.timerStrokeSize,
-        timerStrokeColor:
-            timerStrokeColor ?? _preferencesModel.timerStrokeColor,
         finishedMessage: finishedMessage ?? _preferencesModel.finishedMessage);
 
     // Notify any listeners to this service that the preferences model has been updated.
