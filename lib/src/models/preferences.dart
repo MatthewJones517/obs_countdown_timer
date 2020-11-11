@@ -13,23 +13,16 @@ class PreferencesModel {
   /// The color or the timer
   final Color timerColor;
 
-  final String finishedMessage;
-
   /// Builds with passed in settings
   PreferencesModel(
-      {this.keyType,
-      this.googleFontName,
-      this.timerFontSize,
-      this.timerColor,
-      this.finishedMessage});
+      {this.keyType, this.googleFontName, this.timerFontSize, this.timerColor});
 
   /// Builds with default settings
   PreferencesModel.withDefaults()
       : keyType = KeyType.luma,
         googleFontName = 'Raleway',
         timerFontSize = 72,
-        timerColor = Colors.white,
-        finishedMessage = "We'll get started shortly!";
+        timerColor = Colors.white;
 }
 
 class KeyType {
