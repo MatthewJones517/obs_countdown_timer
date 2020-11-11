@@ -246,7 +246,7 @@ class SettingsScreen extends StatelessWidget {
       ),
       actions: <Widget>[
         FlatButton(
-          child: const Text('Got it'),
+          child: const Text('Confirm'),
           onPressed: () {
             Navigator.of(context).pop();
           },
