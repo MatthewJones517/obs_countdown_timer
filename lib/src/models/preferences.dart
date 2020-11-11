@@ -27,7 +27,7 @@ class PreferencesModel {
   /// Builds with default settings
   PreferencesModel.withDefaults()
       : keyType = KeyType.luma,
-        googleFontName = 'Raleway',
+        googleFontName = 'Open Sans',
         timerFontSize = 72,
         timerColor = Colors.white,
         endTime = TimeOfDay.now();

@@ -109,7 +109,7 @@ class SettingsScreen extends StatelessWidget {
 
   Widget settingsPanelFontSelection(SettingsService settingsService) {
     return DropdownButtonFormField(
-      value: 'Raleway',
+      value: 'Open Sans',
       decoration: InputDecoration(
         labelText: 'Font',
         labelStyle: GoogleFonts.raleway(
@@ -201,7 +201,7 @@ class SettingsScreen extends StatelessWidget {
             context: context,
           );
 
-          print(selectedTime);
+          settingsService.updateEndTime(selectedTime);
         },
       ),
     );
