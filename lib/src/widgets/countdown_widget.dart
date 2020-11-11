@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 class CountdownWidget extends StatelessWidget {
   Widget build(context) {
-    return Center(
-      child: Text('00:00'),
+    return Container(
+      color: Colors.green,
+      child: Center(
+        child: Text('00:00'),
+      ),
     );
   }
 }

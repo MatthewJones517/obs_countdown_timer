@@ -4,7 +4,6 @@ import 'package:obs_countdown_timer/src/widgets/countdown_widget.dart';
 class SettingsScreen extends StatelessWidget {
   Widget build(context) {
     return Scaffold(
-      backgroundColor: Colors.green,
       body: Stack(
         children: [CountdownWidget()],
       ),
