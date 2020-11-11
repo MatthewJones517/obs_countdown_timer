@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PreferencesModel {
-  /// Either 'chroma' or 'luma'. Chroma will give the screen a green background.
-  /// Luma will give it a black background
-  final String maskingKeyStyle;
+  /// If set to true Chroma will be used. Otherwise Luma will be used.
+  final bool isChroma;
 
   /// Google Font Name. Not all Google fonts are supported.
   final String googleFontName;
@@ -24,7 +23,7 @@ class PreferencesModel {
 
   /// Builds with default settings
   PreferencesModel()
-      : maskingKeyStyle = 'luma',
+      : isChroma = false,
         googleFontName = 'ConcertOne',
         timerFontSize = 72,
         timerColor = Colors.white,
