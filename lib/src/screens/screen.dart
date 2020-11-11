@@ -19,17 +19,22 @@ class Screen extends StatelessWidget {
   }
 
   Widget settingsPanel(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(20),
-      padding: EdgeInsets.all(15),
-      width: 425,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Consumer<SettingsService>(
-        builder: (context, settingsService, child) {
-          return Column(
+    return Consumer<SettingsService>(
+      builder: (context, settingsService, child) {
+        // If the panel is closed, just throw up an empty container
+        if (!settingsService.preferences.panelOpen) {
+          return Container();
+        }
+
+        return Container(
+          margin: EdgeInsets.all(20),
+          padding: EdgeInsets.all(15),
+          width: 425,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,12 +43,11 @@ class Screen extends StatelessWidget {
               settingsPanelKeyType(settingsService),
               settingsPanelFontSelection(settingsService),
               settingsPanelFontSizeSelector(settingsService),
-              settingsPanelFontColorSelector(settingsService, context),
-              settingsPanelSelectEndTime(settingsService, context),
+              settingsPanelButtons(settingsService, context),
             ],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -171,12 +175,27 @@ class Screen extends StatelessWidget {
     );
   }
 
+  Widget settingsPanelButtons(
+      SettingsService settingsService, BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        settingsPanelFontColorSelector(settingsService, context),
+        settingsPanelSelectEndTime(settingsService, context),
+        settingsPanelClose(settingsService),
+      ],
+    );
+  }
+
   Widget settingsPanelFontColorSelector(
       SettingsService settingsService, BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 10),
+      padding: EdgeInsets.only(top: 10, right: 10),
       child: ElevatedButton(
-        child: Text('Select Timer Color'),
+        child: Text(
+          'Select Timer Color',
+          style: TextStyle(fontSize: 12),
+        ),
         style: ElevatedButton.styleFrom(primary: Colors.black87),
         onPressed: () {
           showDialog(
@@ -191,9 +210,12 @@ class Screen extends StatelessWidget {
   Widget settingsPanelSelectEndTime(
       SettingsService settingsService, BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 10),
+      padding: EdgeInsets.only(top: 10, right: 10),
       child: ElevatedButton(
-        child: Text('Select End Time'),
+        child: Text(
+          'Select End Time',
+          style: TextStyle(fontSize: 12),
+        ),
         style: ElevatedButton.styleFrom(primary: Colors.black87),
         onPressed: () async {
           TimeOfDay selectedTime = await showTimePicker(
@@ -202,6 +224,21 @@ class Screen extends StatelessWidget {
           );
 
           settingsService.updateEndTime(selectedTime);
+        },
+      ),
+    );
+  }
+
+  Widget settingsPanelClose(SettingsService settingsService) {
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      child: ElevatedButton(
+        child: Text(
+          'Close Settings',
+          style: TextStyle(fontSize: 12),
+        ),
+        onPressed: () {
+          settingsService.closeSettingsPanel();
         },
       ),
     );

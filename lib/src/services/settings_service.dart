@@ -34,6 +34,16 @@ class SettingsService extends ChangeNotifier {
     _updatePreferencesModel(endTime: endTime);
   }
 
+  /// Opens the settings panel
+  void openSettingsPanel() {
+    _updatePreferencesModel(panelOpen: true);
+  }
+
+  /// Closes the settings panel
+  void closeSettingsPanel() {
+    _updatePreferencesModel(panelOpen: false);
+  }
+
   // Updates the preferences model
   void _updatePreferencesModel({
     Color keyType,
@@ -41,13 +51,15 @@ class SettingsService extends ChangeNotifier {
     double timerFontSize,
     Color timerColor,
     TimeOfDay endTime,
+    bool panelOpen,
   }) {
     _preferencesModel = PreferencesModel(
         keyType: keyType ?? _preferencesModel.keyType,
         googleFontName: googleFontName ?? _preferencesModel.googleFontName,
         timerFontSize: timerFontSize ?? _preferencesModel.timerFontSize,
         timerColor: timerColor ?? _preferencesModel.timerColor,
-        endTime: endTime ?? _preferencesModel.endTime);
+        endTime: endTime ?? _preferencesModel.endTime,
+        panelOpen: panelOpen ?? _preferencesModel.panelOpen);
 
     // Notify any listeners to this service that the preferences model has been updated.
     notifyListeners();

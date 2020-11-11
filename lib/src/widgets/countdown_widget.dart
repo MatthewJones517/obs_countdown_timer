@@ -75,16 +75,21 @@ class _CountdownWidgetState extends State<CountdownWidget> {
         });
       });
 
-      return Container(
-        color: settingsService.preferences.keyType,
-        child: Center(
-          child: Text(
-            timeLeft,
-            style: GoogleFonts.getFont(
-              settingsService.preferences.googleFontName,
-              textStyle: TextStyle(
-                  color: settingsService.preferences.timerColor,
-                  fontSize: settingsService.preferences.timerFontSize),
+      return GestureDetector(
+        onDoubleTap: () {
+          settingsService.openSettingsPanel();
+        },
+        child: Container(
+          color: settingsService.preferences.keyType,
+          child: Center(
+            child: Text(
+              timeLeft,
+              style: GoogleFonts.getFont(
+                settingsService.preferences.googleFontName,
+                textStyle: TextStyle(
+                    color: settingsService.preferences.timerColor,
+                    fontSize: settingsService.preferences.timerFontSize),
+              ),
             ),
           ),
         ),
