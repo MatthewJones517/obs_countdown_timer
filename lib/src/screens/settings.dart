@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:obs_countdown_timer/src/services/settings_service.dart';
 import 'package:obs_countdown_timer/src/widgets/countdown_widget.dart';
@@ -11,13 +12,13 @@ class SettingsScreen extends StatelessWidget {
       body: Stack(
         children: [
           CountdownWidget(),
-          settingsPanel(),
+          settingsPanel(context),
         ],
       ),
     );
   }
 
-  Widget settingsPanel() {
+  Widget settingsPanel(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(20),
       padding: EdgeInsets.all(15),
@@ -30,12 +31,14 @@ class SettingsScreen extends StatelessWidget {
         builder: (context, settingsService, child) {
           return Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               settingsPanelHeader(),
               settingsPanelDescription(),
               settingsPanelKeyType(settingsService),
               settingsPanelFontSelection(settingsService),
-              fontSizeSelector(settingsService)
+              settingsPanelFontSizeSelector(settingsService),
+              settingsPanelFontColorSelector(settingsService, context)
             ],
           );
         },
@@ -44,11 +47,15 @@ class SettingsScreen extends StatelessWidget {
   }
 
   Widget settingsPanelHeader() {
-    return Text(
-      'Simple OBS Timer Overlay',
-      style: GoogleFonts.raleway(
-        textStyle: TextStyle(
-          fontSize: 18,
+    return Container(
+      width: 395,
+      child: Text(
+        'Simple OBS Timer Overlay',
+        textAlign: TextAlign.center,
+        style: GoogleFonts.raleway(
+          textStyle: TextStyle(
+            fontSize: 18,
+          ),
         ),
       ),
     );
@@ -136,7 +143,7 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget fontSizeSelector(SettingsService settingsService) {
+  Widget settingsPanelFontSizeSelector(SettingsService settingsService) {
     return Container(
       padding: EdgeInsets.only(top: 10),
       child: Column(
@@ -163,6 +170,23 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
+  Widget settingsPanelFontColorSelector(
+      SettingsService settingsService, BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+      child: ElevatedButton(
+        child: Text('Select Timer Color'),
+        style: ElevatedButton.styleFrom(primary: Colors.black87),
+        onPressed: () {
+          showDialog(
+            context: context,
+            child: colorPicker(settingsService, context),
+          );
+        },
+      ),
+    );
+  }
+
   Widget defaultDropdownText(String text) {
     return Text(
       text,
@@ -184,6 +208,30 @@ class SettingsScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget colorPicker(SettingsService settingsService, BuildContext context) {
+    return AlertDialog(
+      title: Text('Select Timer Color'),
+      content: SingleChildScrollView(
+        child: ColorPicker(
+          pickerColor: settingsService.preferences.timerColor,
+          onColorChanged: (changedColor) {
+            settingsService.updateTimerFontColor(changedColor);
+          },
+          showLabel: true,
+          pickerAreaHeightPercent: 0.8,
+        ),
+      ),
+      actions: <Widget>[
+        FlatButton(
+          child: const Text('Got it'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
     );
   }
 }
