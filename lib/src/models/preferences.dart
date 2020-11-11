@@ -34,7 +34,7 @@ class PreferencesModel {
   /// Builds with default settings
   PreferencesModel.withDefaults()
       : keyType = KeyType.luma,
-        googleFontName = 'ConcertOne',
+        googleFontName = 'Concert One',
         timerFontSize = 72,
         timerColor = Colors.white,
         timerStrokeSize = 5,
