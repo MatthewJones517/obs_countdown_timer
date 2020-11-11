@@ -13,16 +13,24 @@ class PreferencesModel {
   /// The color or the timer
   final Color timerColor;
 
+  /// Time we're counting down to
+  final TimeOfDay endTime;
+
   /// Builds with passed in settings
   PreferencesModel(
-      {this.keyType, this.googleFontName, this.timerFontSize, this.timerColor});
+      {this.keyType,
+      this.googleFontName,
+      this.timerFontSize,
+      this.timerColor,
+      this.endTime});
 
   /// Builds with default settings
   PreferencesModel.withDefaults()
       : keyType = KeyType.luma,
         googleFontName = 'Raleway',
         timerFontSize = 72,
-        timerColor = Colors.white;
+        timerColor = Colors.white,
+        endTime = TimeOfDay.now();
 }
 
 class KeyType {

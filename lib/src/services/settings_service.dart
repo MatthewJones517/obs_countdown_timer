@@ -29,18 +29,25 @@ class SettingsService extends ChangeNotifier {
     _updatePreferencesModel(timerColor: timerColor);
   }
 
+  /// Updates the time we're counting down to
+  void updateEndTime(TimeOfDay endTime) {
+    _updatePreferencesModel(endTime: endTime);
+  }
+
   // Updates the preferences model
   void _updatePreferencesModel({
     Color keyType,
     String googleFontName,
     double timerFontSize,
     Color timerColor,
+    TimeOfDay endTime,
   }) {
     _preferencesModel = PreferencesModel(
         keyType: keyType ?? _preferencesModel.keyType,
         googleFontName: googleFontName ?? _preferencesModel.googleFontName,
         timerFontSize: timerFontSize ?? _preferencesModel.timerFontSize,
-        timerColor: timerColor ?? _preferencesModel.timerColor);
+        timerColor: timerColor ?? _preferencesModel.timerColor,
+        endTime: endTime ?? _preferencesModel.endTime);
 
     // Notify any listeners to this service that the preferences model has been updated.
     notifyListeners();
