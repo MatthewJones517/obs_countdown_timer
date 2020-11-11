@@ -14,7 +14,7 @@ class PreferencesModel {
   final Color timerColor;
 
   /// Font Stroke Size
-  final int timerStrokeSize;
+  final double timerStrokeSize;
 
   /// Font Stroke Color
   final Color timerStrokeColor;

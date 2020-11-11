@@ -30,7 +30,7 @@ class SettingsService extends ChangeNotifier {
   }
 
   /// Updates timer stroke size
-  void updateTimerStrokeSize(int timerStrokeSize) {
+  void updateTimerStrokeSize(double timerStrokeSize) {
     _updatePreferencesModel(timerStrokeSize: timerStrokeSize);
   }
 
@@ -50,7 +50,7 @@ class SettingsService extends ChangeNotifier {
     String googleFontName,
     double timerFontSize,
     Color timerColor,
-    int timerStrokeSize,
+    double timerStrokeSize,
     Color timerStrokeColor,
     String finishedMessage,
   }) {
