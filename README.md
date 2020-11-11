@@ -1,16 +1,9 @@
-# obs_countdown_timer
+# Simple OBS Countdown Timer
 
-A new Flutter project.
+I created this for a friend during the pandemic. He wanted a countdown timer to display in OBS when streaming his church services. 
 
-## Getting Started
+The problem is that all the timers he found forced you to specify a specific amount of time (ie: 15 minutes). He wanted a timer that would count down to a specific time (ie: 9AM). He couldn't find anything that met his needs. 
 
-This project is a starting point for a Flutter application.
+So in typical developer fashion I decided that more code was clearly the answer. Huzzah! I present you with the "Simple OBS Countdown Timer". This was written in Flutter Web and is hosted here: 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Basically just set your end time and the timer begins. There's also some options for changing the font and selecting whether you're using chroma key or luna key to remove the background. 
