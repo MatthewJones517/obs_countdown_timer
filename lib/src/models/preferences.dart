@@ -9,7 +9,7 @@ class Preferences {
   final String googleFontName;
 
   /// The font size of the timer
-  final String timerFontSize;
+  final int timerFontSize;
 
   /// The color or the timer
   final Color timerColor;
@@ -20,11 +20,15 @@ class Preferences {
   /// Font Stroke Color
   final Color timerStrokeColor;
 
-  Preferences(
-      {this.maskingKeyStyle,
-      this.googleFontName,
-      this.timerFontSize,
-      this.timerColor,
-      this.timerStrokeSize,
-      this.timerStrokeColor});
+  final String finishedMessage;
+
+  /// Builds with default settings
+  Preferences()
+      : maskingKeyStyle = 'luma',
+        googleFontName = 'ConcertOne',
+        timerFontSize = 72,
+        timerColor = Colors.white,
+        timerStrokeSize = 5,
+        timerStrokeColor = Colors.black,
+        finishedMessage = "We'll get started shortly!";
 }
