@@ -7,7 +7,7 @@ class SettingsService extends ChangeNotifier {
   PreferencesModel _preferencesModel = PreferencesModel.withDefaults();
 
   // Expose model since it's internal
-  PreferencesModel get preferencesModel => _preferencesModel;
+  PreferencesModel get preferences => _preferencesModel;
 
   /// Changes key between luna / chroma
   void updateKeyType(Color keyType) {
